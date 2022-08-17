@@ -1,0 +1,5 @@
+
+enum StorageKeys {
+  userData,
+  loginTimeStamp
+}
