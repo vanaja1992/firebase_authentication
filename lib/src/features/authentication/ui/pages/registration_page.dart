@@ -1,3 +1,4 @@
+import 'package:firebase_authentication/src/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -9,7 +10,6 @@ import '../../../../core/helpers/popup_message_toast.dart';
 import '../../../../core/theme/app_login_border_decoration.dart';
 import '../../../../core/theme/app_text_theme.dart';
 import '../../../../core/theme/input_decoration_theme.dart';
-import '../../../pages/home_page.dart';
 import '../../cubit/authentication_cubit.dart';
 import '../../model/user_request_model.dart';
 class RegistrationPage extends StatefulWidget {

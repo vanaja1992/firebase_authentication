@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../core/constants/app_strings.dart';
-import '../../core/theme/app_text_theme.dart';
+import '../core/constants/app_strings.dart';
+import '../core/theme/app_text_theme.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

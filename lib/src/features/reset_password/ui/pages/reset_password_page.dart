@@ -1,6 +1,5 @@
 import 'package:firebase_authentication/src/features/authentication/ui/pages/login_page.dart';
 import 'package:firebase_authentication/src/features/reset_password/cubit/reset_password_cubit.dart';
-import 'package:firebase_authentication/src/features/reset_password/cubit/reset_password_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -89,7 +88,6 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                               else if (state is ResetPasswordSuccess) {
                                 // EasyLoading.dismiss();
                                 PopupMessageToast.showMessageToast(state.successMessge);
-
                                 navigatePage();
                               }
                               else{
