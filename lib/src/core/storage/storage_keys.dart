@@ -1,5 +1,5 @@
 
 enum StorageKeys {
-  userData,
-  loginTimeStamp
+  userId,
+  userTokenId
 }

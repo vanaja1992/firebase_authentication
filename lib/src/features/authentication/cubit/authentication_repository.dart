@@ -2,8 +2,9 @@ import 'package:firebase_authentication/src/features/authentication/model/user_r
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_authentication/src/features/authentication/model/user_response_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 class AuthenticationRepository {
-  Future<UserCredential?>login(String email, String password) async {
+  Future<UserCredential?> login(String email, String password) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
@@ -24,17 +25,17 @@ class AuthenticationRepository {
       return null;
     }
   }
-   addUserToDatabase(UserResponseModel userResponseModel){
 
-    try{
-     CollectionReference userCollection= FirebaseFirestore.instance.collection('users');
-     userCollection.add(userResponseModel.toJson());
-     return true;
-    }
-    catch(ex){
+  addUserToDatabase(UserResponseModel userResponseModel) {
+    try {
+      CollectionReference userCollection =
+          FirebaseFirestore.instance.collection('users');
+      userCollection
+          .doc(userResponseModel.userId)
+          .set(userResponseModel.toJson());
+      return true;
+    } catch (ex) {
       return false;
     }
-
-}
-
+  }
 }

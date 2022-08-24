@@ -5,6 +5,7 @@ import 'package:firebase_authentication/src/features/authentication/cubit/authen
 import 'package:firebase_authentication/src/features/authentication/model/user_request_model.dart';
 import 'package:firebase_authentication/src/features/authentication/model/user_response_model.dart';
 import '../../../core/constants/app_strings.dart';
+import '../../../core/helpers/authentication_helpers.dart';
 part 'authentication_state.dart';
 
 class AuthenticationCubit extends Cubit<AuthenticationState> {
@@ -21,6 +22,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     if (userCredential == null) {
       emit(const AuthenticationFailure(AppStrings.errorMessage));
     } else {
+      AuthenticationHelper().setUserId(userCredential.user!.uid);
       emit(AuthenticationSuccess(userCredential));
     }
   }
@@ -33,6 +35,8 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     if (userCredential == null) {
       emit(const AuthenticationFailure(AppStrings.errorMessage));
     } else {
+      String userTokenId = await userCredential.user!.getIdToken();
+      AuthenticationHelper().setUserToken(userTokenId);
       UserResponseModel userResponseModel = UserResponseModel(
           userRequestModel: userRequestModel, userId: userCredential.user!.uid);
       authenticationRepository.addUserToDatabase(userResponseModel);
