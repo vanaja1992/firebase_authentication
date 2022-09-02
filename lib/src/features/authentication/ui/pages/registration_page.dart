@@ -1,4 +1,4 @@
-import 'package:firebase_authentication/src/pages/home_page.dart';
+import 'package:firebase_authentication/src/features/todo/ui/pages/todo_listview_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -260,7 +260,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-            builder: (context) => const HomePage()));
+            builder: (context) => const TodoListViewPage()));
   }
 
   void clearField() {

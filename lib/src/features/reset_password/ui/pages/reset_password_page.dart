@@ -3,7 +3,6 @@ import 'package:firebase_authentication/src/features/reset_password/cubit/reset_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-
 import '../../../../core/assets/app_assets.dart';
 import '../../../../core/common_widgets/app_button.dart';
 import '../../../../core/constants/app_strings.dart';
@@ -12,7 +11,7 @@ import '../../../../core/helpers/popup_message_toast.dart';
 import '../../../../core/theme/app_login_border_decoration.dart';
 import '../../../../core/theme/app_text_theme.dart';
 import '../../../../core/theme/input_decoration_theme.dart';
-import '../../../authentication/cubit/authentication_cubit.dart';
+import '../../cubit/reset_password_repository.dart';
 class ResetPasswordPage extends StatefulWidget {
   const ResetPasswordPage({Key? key}) : super(key: key);
 
@@ -25,7 +24,9 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   TextEditingController emailController = TextEditingController();
    @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BlocProvider(
+  create: (context) => ResetPasswordCubit(ResetPasswordRepository()),
+  child: Scaffold(
           resizeToAvoidBottomInset: true,
           body: SingleChildScrollView(
             child: Stack(
@@ -94,18 +95,15 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
 
                               }
                             },
-                            builder: (_, state) {
-                              if (state is AuthenticationLoading) {
-                                return Container();
-                              }  else  {
-                                return AppButton(
+                            builder: (blocContext, state) {
+                              return AppButton(
                                     title: AppStrings.resetPasswordTitle,
                                     onTap: () {
                                       if (!(_formKey.currentState?.validate() ??
                                           false)) {
                                         return;
                                       }
-                                      context
+                                      blocContext
                                           .read<ResetPasswordCubit>()
                                           .forgotPassword(
                                           emailController.text,
@@ -113,7 +111,6 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                                     });
                               }
 
-                            },
                           ),
                           const SizedBox(
                             height: 17,
@@ -126,7 +123,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                 ),
               ],
             ),
-          ));
+          )),
+);
 }
 
   void clearField() {

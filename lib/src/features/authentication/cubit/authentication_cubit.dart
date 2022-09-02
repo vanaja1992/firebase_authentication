@@ -12,7 +12,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   AuthenticationRepository authenticationRepository;
   AuthenticationCubit(this.authenticationRepository)
       : super(AuthenticationInitial());
-  final List<UserRequestModel> _userModel = [];
+  //final List<UserRequestModel> _userModel = [];
   UserCredential? userCredential;
   loginUser(String email, String password) async {
     emit(AuthenticationLoading());
@@ -23,6 +23,8 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       emit(const AuthenticationFailure(AppStrings.errorMessage));
     } else {
       AuthenticationHelper().setUserId(userCredential.user!.uid);
+      String userTokenId = await userCredential.user!.getIdToken();
+      AuthenticationHelper().setUserToken(userTokenId);
       emit(AuthenticationSuccess(userCredential));
     }
   }
@@ -30,13 +32,14 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   signUpUser(UserRequestModel userRequestModel) async {
     UserCredential? userCredential;
     emit(AuthenticationLoading());
-    _userModel.add(userRequestModel);
+    //_userModel.add(userRequestModel);
     userCredential = await authenticationRepository.signup(userRequestModel);
     if (userCredential == null) {
       emit(const AuthenticationFailure(AppStrings.errorMessage));
     } else {
       String userTokenId = await userCredential.user!.getIdToken();
       AuthenticationHelper().setUserToken(userTokenId);
+      AuthenticationHelper().setUserId(userCredential.user!.uid);
       UserResponseModel userResponseModel = UserResponseModel(
           userRequestModel: userRequestModel, userId: userCredential.user!.uid);
       authenticationRepository.addUserToDatabase(userResponseModel);

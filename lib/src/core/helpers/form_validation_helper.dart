@@ -82,6 +82,26 @@ class FormValidationHelper {
       return null;
     }
   }
-
-
+  static String? validateTodoTitle(String? uname) {
+    if(uname== null){
+      return AppStrings.todoIncorrectErrorMessage;
+    }
+    uname = uname.trim();
+    if (uname.isEmpty) {
+      return AppStrings.todoIncorrectErrorMessage;
+    } else {
+      return null;
+    }
+  }
+  static String? validateTodoDescription(String? uname) {
+    if(uname== null){
+      return AppStrings.todoIncorrectDescErrorMessage;
+    }
+    uname = uname.trim();
+    if (uname.isEmpty) {
+      return AppStrings.todoIncorrectDescErrorMessage;
+    } else {
+      return null;
+    }
+  }
 }

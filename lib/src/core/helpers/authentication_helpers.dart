@@ -14,6 +14,6 @@ class AuthenticationHelper {
     return await StorageService.readData(StorageKeys.userTokenId.name);
   }
   Future<void> setUserToken(String userToken) async{
-    StorageService.writeData(StorageKeys.userId.name, userToken);
+    StorageService.writeData(StorageKeys.userTokenId.name, userToken);
   }
 }

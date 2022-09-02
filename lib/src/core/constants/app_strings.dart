@@ -46,7 +46,8 @@ class AppStrings{
   static const String passwordIncorrectErrorMessage = "Invalid password";
   static const String userdEmptyErrorMessage = "Please enter username";
   static const String userIncorrectErrorMessage = "Invalid username";
-
+  static const String todoIncorrectErrorMessage = "Empty title field";
+  static const String todoIncorrectDescErrorMessage = "Empty description field";
   //Regex
   static RegExp emailRegex = RegExp(
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
@@ -61,5 +62,21 @@ class AppStrings{
   static const String errorResetPasswordMessage = "Invalid email id";
   static const String successResetPasswordMessage = "Successfully send reset password link to your registered  mail id ";
   static const String resetPasswordTitle = "Reset Password";
+
+
+  //TodoPage
+  static const String errorAddTodo = "Error in adding your Todo List";
+  static const String successAddTodo = "Successfully add your Todo List  ";
+  static const String todonote = "Reminder Your Note";
+  static const String todoCreateDate = "Created Date";
+  static const String todoRemindDate = "Remind Date";
+  static const String description = "Description";
+  static const String statusPassword = "Status";
+  static const String todoButton = "Add Now";
+  static const String errorUpdateTodo = "Error in updated your Todo List";
+  static const String successUpdateTodo = "Successfully updated your Todo List ";
+  static const String errorLoading = "Error in Loading";
+  static const String todoErrorMessage = "Fail to fetch data";
+  static const String todomenu = "edit";
 
 }
